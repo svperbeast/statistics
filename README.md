@@ -1,6 +1,6 @@
 # statistics functions
 
-A simple statistics functions:
+A simple statistics header-only implementation:
 
 * mean
 * median
