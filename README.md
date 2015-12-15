@@ -13,6 +13,10 @@ A simple statistics header-only implementation:
 
 # examples
 
+## header inclusion
+
+    #include "statistics.hpp"
+
 ## test values
 
     float testvals[] = {2, 4, 9, 14};
@@ -24,5 +28,5 @@ A simple statistics header-only implementation:
 ## de-mean
 
     std::vector<float> dems;
-    de_mean(std::begin(testvals), std::end(testvals),
+    sts::de_mean(std::begin(testvals), std::end(testvals),
             std::back_inserter(dems));
