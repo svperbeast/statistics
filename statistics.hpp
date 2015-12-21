@@ -100,8 +100,13 @@ variance(InputIt first, InputIt last)
     std::vector<
         typename std::iterator_traits<InputIt>::value_type > deviations;
     de_mean(first, last, std::back_inserter(deviations));
-    return (sum_of_squares(deviations.begin(), deviations.end()) /
-            (std::distance(first, last) - 1));
+
+    typename std::iterator_traits<InputIt>::difference_type n =
+        std::distance(first, last);
+    if (n > 2) {
+        n -= 1;
+    }
+    return (sum_of_squares(deviations.begin(), deviations.end()) / n);
 }
 
 template <typename InputIt>
