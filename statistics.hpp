@@ -12,6 +12,10 @@ template <typename InputIt>
 typename std::iterator_traits<InputIt>::value_type
 mean(InputIt first, InputIt last)
 {
+    if (first == last) {
+        return typename std::iterator_traits<InputIt>::value_type{};
+    }
+
     typename std::iterator_traits<InputIt>::value_type sum{};
     typename std::iterator_traits<InputIt>::difference_type n{};
 
@@ -27,6 +31,10 @@ template <typename InputIt>
 typename std::iterator_traits<InputIt>::value_type
 median(InputIt first, InputIt last)
 {
+    if (first == last) {
+        return typename std::iterator_traits<InputIt>::value_type{};
+    }
+
     // copy input to a vector to use RandomAccessIterator and
     // do not modifiy input.
     std::vector<typename std::iterator_traits<InputIt>::value_type> sorted;
@@ -50,6 +58,10 @@ template <typename InputIt>
 typename std::iterator_traits<InputIt>::value_type
 range(InputIt first, InputIt last)
 {
+    if (first == last) {
+        return typename std::iterator_traits<InputIt>::value_type{};
+    }
+
     std::vector<typename std::iterator_traits<InputIt>::value_type> sorted;
     std::copy(first, last, std::back_inserter(sorted));
     std::sort(sorted.begin(), sorted.end());
@@ -61,6 +73,10 @@ template <typename InputIt>
 typename std::iterator_traits<InputIt>::value_type
 dot(InputIt first1, InputIt last1, InputIt first2, InputIt last2)
 {
+    if ((first1 == last1) || (first2 == last2)) {
+        return typename std::iterator_traits<InputIt>::value_type{};
+    }
+
     typename std::iterator_traits<InputIt>::value_type sum{};
 
     typename std::iterator_traits<InputIt>::difference_type n = std::min(
@@ -97,6 +113,10 @@ template <typename InputIt>
 typename std::iterator_traits<InputIt>::value_type
 variance(InputIt first, InputIt last)
 {
+    if (first == last) {
+        return typename std::iterator_traits<InputIt>::value_type{};
+    }
+
     std::vector<
         typename std::iterator_traits<InputIt>::value_type > deviations;
     de_mean(first, last, std::back_inserter(deviations));
@@ -113,6 +133,9 @@ template <typename InputIt>
 typename std::iterator_traits<InputIt>::value_type
 standard_deviation(InputIt first, InputIt last)
 {
+    if (first == last) {
+        return typename std::iterator_traits<InputIt>::value_type{};
+    }
     return std::sqrt(variance(first, last));
 }
 
